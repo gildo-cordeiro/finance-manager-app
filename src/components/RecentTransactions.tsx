@@ -1,30 +1,73 @@
 import React from 'react';
-import { Paper, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  { field: 'date', headerName: 'Date', width: 150 },
-  { field: 'description', headerName: 'Description', width: 200 },
-  { field: 'amount', headerName: 'Amount', width: 150 },
-];
+import { v4 as uuidv4 } from 'uuid';
+import ComponentHeader from './ComponentHeader';
 
 const rows = [
-  { id: 1, date: '2025-01-01', description: 'Salary', amount: '$3000' },
-  { id: 2, date: '2025-01-05', description: 'Groceries', amount: '$200' },
-  { id: 3, date: '2025-01-10', description: 'Rent', amount: '$1000' },
+  { id: uuidv4(), type: 'Expense', description: 'Groceries', amount: 50.75, date: '2023-10-01' },
+  { id: uuidv4(), type: 'Income', description: 'Salary', amount: 1500.00, date: '2023-10-05' },
+  { id: uuidv4(), type: 'Expense', description: 'Rent', amount: 700.00, date: '2023-10-03' },
+  { id: uuidv4(), type: 'Income', description: 'Freelance Project', amount: 300.00, date: '2023-10-10' },
+  { id: uuidv4(), type: 'Expense', description: 'Utilities', amount: 120.00, date: '2023-10-07' },
+  { id: uuidv4(), type: 'Expense', description: 'Dining Out', amount: 60.00, date: '2023-10-08' },
+  { id: uuidv4(), type: 'Income', description: 'Investment Return', amount: 200.00, date: '2023-10-12' },
+  { id: uuidv4(), type: 'Expense', description: 'Transportation', amount: 30.00, date: '2023-10-09' },
+  { id: uuidv4(), type: 'Expense', description: 'Entertainment', amount: 80.00, date: '2023-10-11' },
 ];
+
+const columns: GridColDef<(typeof rows)[number]>[] = [
+  { field: 'id', headerName: 'ID', width: 200 },
+  {
+    field: 'type',
+    headerName: 'Type',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'description',
+    headerName: 'Description',
+    width: 300,
+    editable: true,
+  },
+  {
+    field: 'amount',
+    headerName: 'Amount',
+    type: 'number',
+    width: 150,
+    editable: true,
+    valueParser: (value) => {return Number(value).toFixed(2);}
+  },
+  {
+    field: 'date',
+    headerName: 'Date',
+    type: 'date',
+    width: 150,
+    editable: true,
+    valueGetter: (value) => {return new Date(value);}
+  },
+];
+
 
 const RecentTransactions: React.FC = () => {
   return (
-    <Paper sx={{ padding: 2, marginTop: 2 }}>
-      <Typography variant="h6" gutterBottom>
-        Recent Transactions
-      </Typography>
+    <><ComponentHeader title="Transações Recentes" /><Box sx={{ height: '500px', width: '100%', backgroundColor: 'background.paper', borderRadius: 1 }}>
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} pagination pageSizeOptions={[5]} />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5, 10, 20]}
+          checkboxSelection
+          disableRowSelectionOnClick />
       </div>
-    </Paper>
+    </Box></>
   );
 };
 

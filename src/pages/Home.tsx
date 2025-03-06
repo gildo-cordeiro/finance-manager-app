@@ -3,8 +3,8 @@ import { Container, CssBaseline } from '@mui/material';
 import Header from '../components/Header';
 import FinancialSummary from '../components/FinancialSummary';
 import RecentTransactions from '../components/RecentTransactions';
-import Chart from '../components/Chart';
 import AppTheme from '../components/shared-theme/AppTheme';
+import PieChartRelatory from '../components/PieChartRelatory';
 
 const Home: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const Home: React.FC = () => {
         <Container sx={{ padding: 4 }}>
           <FinancialSummary />
           <RecentTransactions />
-          <Chart />
+          <PieChartRelatory />
         </Container>
       </AppTheme>
     </>
