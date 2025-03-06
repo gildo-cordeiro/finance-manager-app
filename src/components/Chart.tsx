@@ -11,8 +11,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import AppTheme from '../shared-theme/AppTheme';
-import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import AppTheme from './shared-theme/AppTheme';
+import ColorModeSelect from './shared-theme/ColorModeSelect';
 
 // Registre os componentes necessários do Chart.js
 ChartJS.register(

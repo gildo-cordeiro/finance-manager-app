@@ -1,8 +1,8 @@
 import { Alert, AlertTitle, Box, Button, CssBaseline, FormControl, FormLabel, Stack, styled, TextField, Typography } from "@mui/material";
-import AppTheme from "../shared-theme/AppTheme";
+import AppTheme from "../components/shared-theme/AppTheme";
 import MuiCard from '@mui/material/Card';
 import React from "react";
-import ColorModeSelect from "../shared-theme/ColorModeSelect";
+import ColorModeSelect from "../components/shared-theme/ColorModeSelect";
 import { useSearchParams } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -101,7 +101,7 @@ export default function ResetPassword() {
                     setSuccessMessage(data.message);
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 setErrorMessage('An error occurred. Please try again later.');
             });
     }

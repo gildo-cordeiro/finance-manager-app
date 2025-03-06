@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import FinancialSummary from '../components/FinancialSummary';
 import RecentTransactions from '../components/RecentTransactions';
 import Chart from '../components/Chart';
-import AppTheme from '../shared-theme/AppTheme';
+import AppTheme from '../components/shared-theme/AppTheme';
 
 const Home: React.FC = () => {
   return (
